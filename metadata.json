@@ -1,0 +1,6 @@
+{
+  "name": "SainsQuest - Sistem Gamifikasi Kelas Science",
+  "description": "Platform dan template spreadsheet gamifikasi pembelajaran Sains 1 tahun ajaran dengan sistem Level, Tier, Badge, Perk, Daily Check-in & Streak, Weekly Quest, dan kontrol penuh guru.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
