@@ -46,6 +46,12 @@ export const DailyCheckinView: React.FC<DailyCheckinViewProps> = ({
   } | null>(null);
 
   // Check if current selected student has checked in today
+  React.useEffect(() => {
+    if (students.length > 0 && !students.some((s) => s.id === selectedStudentId)) {
+      setSelectedStudentId(students[0].id);
+    }
+  }, [students, selectedStudentId]);
+
   const currentStudentCheckinToday = checkins.find(
     (c) => c.idSiswa === selectedStudentId && c.tanggal === todayStr
   );
@@ -167,29 +173,38 @@ export const DailyCheckinView: React.FC<DailyCheckinViewProps> = ({
           </div>
 
           {/* Student Selector */}
-          <div>
-            <label className="block text-xs font-medium text-slate-400 mb-1.5">
-              Identitas Siswa:
-            </label>
-            <select
-              value={selectedStudentId}
-              onChange={(e) => {
-                setSelectedStudentId(e.target.value);
-                setSubmittedFeedback(null);
-                setSelectedOption('');
-              }}
-              className="w-full px-3 py-2.5 text-xs bg-slate-950 border border-slate-700 rounded-xl text-white font-sans focus:outline-none focus:border-emerald-500"
-            >
-              {students.map((st) => {
-                const isDone = checkedInStudentIds.has(st.id);
-                return (
-                  <option key={st.id} value={st.id}>
-                    {isDone ? '✓ [Sudah Check-in]' : '○ [Belum Check-in]'} {st.id} - {st.name}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
+          {students.length === 0 ? (
+            <div className="bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-400 space-y-2">
+              <p className="text-slate-300 font-semibold">Belum ada siswa terdaftar di kelas.</p>
+              <p className="text-slate-500">
+                Silakan buka tab <strong>Kontrol Guru</strong> untuk mendaftarkan atau menempel daftar nama siswa terlebih dahulu.
+              </p>
+            </div>
+          ) : (
+            <div>
+              <label className="block text-xs font-medium text-slate-400 mb-1.5">
+                Identitas Siswa:
+              </label>
+              <select
+                value={selectedStudentId}
+                onChange={(e) => {
+                  setSelectedStudentId(e.target.value);
+                  setSubmittedFeedback(null);
+                  setSelectedOption('');
+                }}
+                className="w-full px-3 py-2.5 text-xs bg-slate-950 border border-slate-700 rounded-xl text-white font-sans focus:outline-none focus:border-emerald-500"
+              >
+                {students.map((st) => {
+                  const isDone = checkedInStudentIds.has(st.id);
+                  return (
+                    <option key={st.id} value={st.id}>
+                      {isDone ? '✓ [Sudah Check-in]' : '○ [Belum Check-in]'} {st.id} - {st.name}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+          )}
 
           {/* Status indicator if already checked in today */}
           {currentStudentCheckinToday ? (

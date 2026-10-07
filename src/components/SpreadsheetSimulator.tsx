@@ -257,7 +257,14 @@ export const SpreadsheetSimulator: React.FC<SpreadsheetSimulatorProps> = ({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800/80">
-                  {stats.map((s, idx) => {
+                  {stats.length === 0 ? (
+                    <tr>
+                      <td colSpan={8} className="py-8 text-center text-slate-500 font-sans text-xs">
+                        Belum ada siswa di kelas. Tambahkan siswa di tab <strong>Kontrol Guru</strong> untuk mengisi baris rumus ini otomatis.
+                      </td>
+                    </tr>
+                  ) : (
+                    stats.map((s, idx) => {
                     const rowNum = idx + 2;
                     const sumifsFormula = `=SUMIFS('Riwayat XP'!C:C, 'Riwayat XP'!B:B, A${rowNum})`;
                     const vlookupBadge = `=VLOOKUP(C${rowNum}, 'Master Level'!A:C, 2, 1)`;
@@ -403,7 +410,8 @@ export const SpreadsheetSimulator: React.FC<SpreadsheetSimulatorProps> = ({
                         </td>
                       </tr>
                     );
-                  })}
+                  })
+                )}
                 </tbody>
               </table>
             </div>
@@ -433,7 +441,14 @@ export const SpreadsheetSimulator: React.FC<SpreadsheetSimulatorProps> = ({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800/80">
-                  {sortedCheckins.map((c, idx) => {
+                  {sortedCheckins.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} className="py-8 text-center text-slate-500 font-sans text-xs">
+                        Belum ada aktivitas Daily Check-in. Siswa dapat menjawab pertanyaan harian di menu <strong>Check-in Siswa</strong>.
+                      </td>
+                    </tr>
+                  ) : (
+                    sortedCheckins.map((c, idx) => {
                     const rowNum = idx + 2;
                     const prevRow = idx + 1;
                     const formula =
@@ -469,7 +484,8 @@ export const SpreadsheetSimulator: React.FC<SpreadsheetSimulatorProps> = ({
                         </td>
                       </tr>
                     );
-                  })}
+                  })
+                )}
                 </tbody>
               </table>
             </div>
@@ -497,7 +513,14 @@ export const SpreadsheetSimulator: React.FC<SpreadsheetSimulatorProps> = ({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800/80">
-                  {sortedXp.map((r, idx) => (
+                  {sortedXp.length === 0 ? (
+                    <tr>
+                      <td colSpan={5} className="py-8 text-center text-slate-500 font-sans text-xs">
+                        Belum ada catatan Riwayat XP. Gunakan menu <strong>Kontrol Guru</strong> untuk menginput Reward atau Penalti pertama.
+                      </td>
+                    </tr>
+                  ) : (
+                    sortedXp.map((r, idx) => (
                     <tr key={r.id} className="hover:bg-slate-800/50 transition-colors">
                       <td className="py-2.5 px-3 text-center text-slate-600">{idx + 2}</td>
                       <td className="py-2.5 px-4 text-slate-300">{r.tanggal}</td>
@@ -511,7 +534,8 @@ export const SpreadsheetSimulator: React.FC<SpreadsheetSimulatorProps> = ({
                       </td>
                       <td className="py-2.5 px-4 font-sans text-slate-200">{r.keterangan}</td>
                     </tr>
-                  ))}
+                  ))
+                )}
                 </tbody>
               </table>
             </div>

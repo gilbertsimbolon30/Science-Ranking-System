@@ -32,17 +32,32 @@ import { FormulaGuideModal } from './components/FormulaGuideModal';
 import { StudentDetailModal } from './components/StudentDetailModal';
 
 const STORAGE_KEYS = {
-  STUDENTS: 'sainsquest_students_v1',
-  XP_RECORDS: 'sainsquest_xprecords_v1',
-  CHECKINS: 'sainsquest_checkins_v1',
-  QUESTS: 'sainsquest_quests_v1',
-  TODAY_QUESTION: 'sainsquest_today_question_v1',
+  STUDENTS: 'sainsquest_students_v2',
+  XP_RECORDS: 'sainsquest_xprecords_v2',
+  CHECKINS: 'sainsquest_checkins_v2',
+  QUESTS: 'sainsquest_quests_v2',
+  TODAY_QUESTION: 'sainsquest_today_question_v2',
+  MOCK_CLEARED: 'sainsquest_mock_cleared_v2',
 };
+
+// Clear previous mockup keys if present
+if (typeof window !== 'undefined' && localStorage.getItem(STORAGE_KEYS.MOCK_CLEARED) !== 'true') {
+  try {
+    localStorage.removeItem('sainsquest_students_v1');
+    localStorage.removeItem('sainsquest_xprecords_v1');
+    localStorage.removeItem('sainsquest_checkins_v1');
+    localStorage.removeItem('sainsquest_quests_v1');
+    localStorage.removeItem('sainsquest_today_question_v1');
+    localStorage.setItem(STORAGE_KEYS.MOCK_CLEARED, 'true');
+  } catch (e) {
+    // Ignore storage issues
+  }
+}
 
 export default function App() {
   const todayStr = useMemo(() => formatDateStr(new Date()), []);
 
-  // State Management with LocalStorage Fallback
+  // State Management with LocalStorage Fallback (Fresh clean arrays)
   const [students, setStudents] = useState<Student[]>(() => {
     const saved = localStorage.getItem(STORAGE_KEYS.STUDENTS);
     return saved ? JSON.parse(saved) : INITIAL_STUDENTS;
@@ -100,7 +115,46 @@ export default function App() {
     return computeStudentStats(students, xpRecords, checkins, todayStr, MASTER_LEVELS);
   }, [students, xpRecords, checkins, todayStr]);
 
-  // Handlers
+  // Handlers for Students
+  const handleAddStudent = (name: string) => {
+    const nextNum = students.length + 1;
+    const newId = `SCI-${String(nextNum).padStart(3, '0')}`;
+    const newStudent: Student = { id: newId, name };
+    setStudents((prev) => [...prev, newStudent]);
+  };
+
+  const handleAddBatchStudents = (names: string[]) => {
+    let currentCount = students.length;
+    const newStudents: Student[] = names.map((name) => {
+      currentCount++;
+      return {
+        id: `SCI-${String(currentCount).padStart(3, '0')}`,
+        name,
+      };
+    });
+    setStudents((prev) => [...prev, ...newStudents]);
+  };
+
+  const handleDeleteStudent = (studentId: string) => {
+    setStudents((prev) => prev.filter((s) => s.id !== studentId));
+    // Clean up student's records from Riwayat XP and Daily Check-in
+    setXpRecords((prev) => prev.filter((r) => r.idSiswa !== studentId));
+    setCheckins((prev) => prev.filter((c) => c.idSiswa !== studentId));
+    setQuests((prev) =>
+      prev.map((q) => ({
+        ...q,
+        completedStudentIds: q.completedStudentIds.filter((id) => id !== studentId),
+      }))
+    );
+  };
+
+  const handleEditStudent = (studentId: string, newName: string) => {
+    setStudents((prev) =>
+      prev.map((s) => (s.id === studentId ? { ...s, name: newName } : s))
+    );
+  };
+
+  // Handlers for XP Records
   const handleAddXPRecord = (record: Omit<XPRecord, 'id'>) => {
     const newRecord: XPRecord = {
       ...record,
@@ -119,13 +173,6 @@ export default function App() {
 
   const handleDeleteXPRecord = (id: string) => {
     setXpRecords((prev) => prev.filter((r) => r.id !== id));
-  };
-
-  const handleAddStudent = (name: string) => {
-    const nextNum = students.length + 1;
-    const newId = `SCI-${String(nextNum).padStart(3, '0')}`;
-    const newStudent: Student = { id: newId, name };
-    setStudents((prev) => [...prev, newStudent]);
   };
 
   const handleStudentCheckin = (studentId: string, answer: string, earnedStreak: number) => {
@@ -158,14 +205,12 @@ export default function App() {
     if (!quest) return;
 
     if (!quest.completedStudentIds.includes(studentId)) {
-      // Update quest completions
       setQuests((prev) =>
         prev.map((q) =>
           q.id === questId ? { ...q, completedStudentIds: [...q.completedStudentIds, studentId] } : q
         )
       );
 
-      // Log high XP reward into Riwayat XP
       const xpLog: XPRecord = {
         id: `xp-quest-${Date.now()}`,
         tanggal: todayStr,
@@ -188,12 +233,14 @@ export default function App() {
   };
 
   const handleResetDemoData = () => {
-    setStudents(INITIAL_STUDENTS);
-    setXpRecords(INITIAL_XP_RECORDS);
-    setCheckins(INITIAL_DAILY_CHECKINS);
-    setQuests(INITIAL_WEEKLY_QUESTS);
-    setTodayQuestion(QUESTION_BANK[0]);
-    localStorage.clear();
+    setStudents([]);
+    setXpRecords([]);
+    setCheckins([]);
+    setQuests(INITIAL_WEEKLY_QUESTS.map((q) => ({ ...q, completedStudentIds: [] })));
+    localStorage.removeItem(STORAGE_KEYS.STUDENTS);
+    localStorage.removeItem(STORAGE_KEYS.XP_RECORDS);
+    localStorage.removeItem(STORAGE_KEYS.CHECKINS);
+    localStorage.removeItem(STORAGE_KEYS.QUESTS);
   };
 
   const handleOpenQuickXP = (studentId: string) => {
@@ -227,6 +274,7 @@ export default function App() {
             onSelectStudent={(id) => setSelectedStudentIdForDetail(id)}
             onOpenQuickXP={handleOpenQuickXP}
             onGoToCheckin={() => setActiveTab('checkin')}
+            onGoToTeacherPanel={() => setActiveTab('teacher')}
           />
         )}
 
@@ -239,6 +287,9 @@ export default function App() {
             onAddBatchXP={handleAddBatchXP}
             onDeleteXPRecord={handleDeleteXPRecord}
             onAddStudent={handleAddStudent}
+            onAddBatchStudents={handleAddBatchStudents}
+            onDeleteStudent={handleDeleteStudent}
+            onEditStudent={handleEditStudent}
             onResetDemoData={handleResetDemoData}
             preselectedStudentId={preselectedStudentIdForTeacher}
           />
