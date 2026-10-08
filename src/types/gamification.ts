@@ -53,6 +53,14 @@ export interface DailyQuestion {
   xpBonus: number;
 }
 
+export interface XPPreset {
+  id: string;
+  label: string;
+  xp: number;
+  note: string;
+  type: 'reward' | 'penalty';
+}
+
 export interface StudentComputedStats {
   id: string;
   name: string;

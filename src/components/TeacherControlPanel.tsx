@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Student, XPRecord, StudentComputedStats } from '../types/gamification';
+import React, { useState, useEffect } from 'react';
+import { Student, XPRecord, StudentComputedStats, XPPreset } from '../types/gamification';
 import {
   ShieldAlert,
   PlusCircle,
@@ -18,12 +18,29 @@ import {
   Edit2,
   Check,
   X,
+  Settings,
+  Plus,
 } from 'lucide-react';
 import {
   triggerLevelUpConfetti,
   triggerTeacherRewardSound,
   triggerPenaltySound,
 } from '../utils/celebration';
+
+const DEFAULT_REWARD_PRESETS: XPPreset[] = [
+  { id: 'rew-1', label: 'Bertanya Kritis / Hipotesis', xp: 50, note: 'Bertanya kritis dan merumuskan hipotesis ilmiah', type: 'reward' },
+  { id: 'rew-2', label: 'Praktikum Tertib & Aman', xp: 100, note: 'Pelaksanaan praktikum sangat tertib & mematuhi SOP', type: 'reward' },
+  { id: 'rew-3', label: 'Laporan Praktikum Sempurna', xp: 250, note: 'Laporan praktikum komprehensif dan analisis data mendalam', type: 'reward' },
+  { id: 'rew-4', label: 'Presentasi Hasil Riset', xp: 350, note: 'Presentasi ilmiah sangat lugas dan data teruji', type: 'reward' },
+  { id: 'rew-5', label: 'Proyek Sains Inovatif', xp: 500, note: 'Karya inovasi sains/rekayasa teknologi terpilih', type: 'reward' },
+];
+
+const DEFAULT_PENALTY_PRESETS: XPPreset[] = [
+  { id: 'pen-1', label: 'Terlambat Kumpul Tugas', xp: 20, note: 'Terlambat mengumpulkan tugas atau lembar kerja lab', type: 'penalty' },
+  { id: 'pen-2', label: 'Tidak Pakai Jas Lab / APD', xp: 50, note: 'Pelanggaran SOP: Tidak mengenakan jas lab / kacamata', type: 'penalty' },
+  { id: 'pen-3', label: 'Meja Praktikum Berantakan', xp: 75, note: 'Alat dan preparat lab tidak dibersihkan setelah selesai', type: 'penalty' },
+  { id: 'pen-4', label: 'Merusak Alat Kaca / Tabung', xp: 100, note: 'Kelalaian penanganan peralatan kaca laboratorium', type: 'penalty' },
+];
 
 interface TeacherControlPanelProps {
   students: Student[];
@@ -88,8 +105,44 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
   const [historySearch, setHistorySearch] = useState<string>('');
   const [historyFilter, setHistoryFilter] = useState<'all' | 'reward' | 'penalty'>('all');
 
+  // Custom Presets State (Persistent in localStorage)
+  const [rewardPresets, setRewardPresets] = useState<XPPreset[]>(() => {
+    try {
+      const saved = localStorage.getItem('sainsquest_reward_presets_v2');
+      return saved ? JSON.parse(saved) : DEFAULT_REWARD_PRESETS;
+    } catch {
+      return DEFAULT_REWARD_PRESETS;
+    }
+  });
+
+  const [penaltyPresets, setPenaltyPresets] = useState<XPPreset[]>(() => {
+    try {
+      const saved = localStorage.getItem('sainsquest_penalty_presets_v2');
+      return saved ? JSON.parse(saved) : DEFAULT_PENALTY_PRESETS;
+    } catch {
+      return DEFAULT_PENALTY_PRESETS;
+    }
+  });
+
+  // Save presets to localStorage
+  useEffect(() => {
+    localStorage.setItem('sainsquest_reward_presets_v2', JSON.stringify(rewardPresets));
+  }, [rewardPresets]);
+
+  useEffect(() => {
+    localStorage.setItem('sainsquest_penalty_presets_v2', JSON.stringify(penaltyPresets));
+  }, [penaltyPresets]);
+
+  // Preset Editor Modal State
+  const [presetModalOpen, setPresetModalOpen] = useState<boolean>(false);
+  const [presetModalType, setPresetModalType] = useState<'reward' | 'penalty'>('reward');
+  const [editingPresetItem, setEditingPresetItem] = useState<XPPreset | null>(null);
+  const [presetFormLabel, setPresetFormLabel] = useState<string>('');
+  const [presetFormXp, setPresetFormXp] = useState<number>(100);
+  const [presetFormNote, setPresetFormNote] = useState<string>('');
+
   // Ensure selectedStudentId is always valid if students list changes
-  React.useEffect(() => {
+  useEffect(() => {
     if (preselectedStudentId && students.some((s) => s.id === preselectedStudentId)) {
       setSelectedStudentId(preselectedStudentId);
     } else if (students.length > 0 && !students.some((s) => s.id === selectedStudentId)) {
@@ -97,25 +150,9 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
     }
   }, [students, preselectedStudentId]);
 
-  // Quick Preset Options
-  const rewardPresets = [
-    { label: 'Bertanya Kritis / Hipotesis', xp: 50, note: 'Bertanya kritis dan merumuskan hipotesis ilmiah' },
-    { label: 'Praktikum Tertib & Aman', xp: 100, note: 'Pelaksanaan praktikum sangat tertib & mematuhi SOP' },
-    { label: 'Laporan Praktikum Sempurna', xp: 250, note: 'Laporan praktikum komprehensif dan analisis data mendalam' },
-    { label: 'Presentasi Hasil Riset', xp: 350, note: 'Presentasi ilmiah sangat lugas dan data teruji' },
-    { label: 'Proyek Sains Inovatif', xp: 500, note: 'Karya inovasi sains/rekayasa teknologi terpilih' },
-  ];
-
-  const penaltyPresets = [
-    { label: 'Terlambat Kumpul Tugas', xp: 20, note: 'Terlambat mengumpulkan tugas atau lembar kerja lab' },
-    { label: 'Tidak Pakai Jas Lab / APD', xp: 50, note: 'Pelanggaran SOP: Tidak mengenakan jas lab / kacamata' },
-    { label: 'Meja Praktikum Berantakan', xp: 75, note: 'Alat dan preparat lab tidak dibersihkan setelah selesai' },
-    { label: 'Merusak Alat Kaca / Tabung', xp: 100, note: 'Kelalaian penanganan peralatan kaca laboratorium' },
-  ];
-
-  const handleApplyPreset = (preset: { xp: number; note: string }, type: 'reward' | 'penalty') => {
-    setPointType(type);
-    setXpValue(preset.xp);
+  const handleApplyPreset = (preset: XPPreset) => {
+    setPointType(preset.type);
+    setXpValue(Math.min(1000, Math.max(1, preset.xp)));
     setKeterangan(preset.note);
   };
 
@@ -147,7 +184,14 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
       return;
     }
 
-    const calculatedXP = pointType === 'penalty' ? -Math.abs(xpValue) : Math.abs(xpValue);
+    // Strict validation: rentang 1 - 1000 poin XP
+    const parsedXp = Number(xpValue);
+    if (isNaN(parsedXp) || parsedXp < 1 || parsedXp > 1000) {
+      alert('Nilai XP harus berada dalam rentang 1 - 1.000 poin XP');
+      return;
+    }
+
+    const calculatedXP = pointType === 'penalty' ? -Math.abs(parsedXp) : Math.abs(parsedXp);
 
     if (targetMode === 'single') {
       if (!selectedStudentId) {
@@ -221,7 +265,7 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
     onAddBatchStudents(rawLines);
     setBatchNamesInput('');
     setIsBatchImportModalOpen(false);
-    setSuccessToast(`Berhasil mengimpor ${rawLines.length} siswa ke dalam kelas!`);
+    setSuccessToast(`Berhasil menambahkan ${rawLines.length} siswa ke dalam kelas!`);
     setTimeout(() => setSuccessToast(null), 3000);
   };
 
@@ -236,6 +280,98 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
       setEditingStudentId(null);
       setSuccessToast('Nama siswa berhasil diperbarui!');
       setTimeout(() => setSuccessToast(null), 3000);
+    }
+  };
+
+  // Preset Management Handlers
+  const openPresetModal = (type: 'reward' | 'penalty', presetToEdit?: XPPreset) => {
+    setPresetModalType(type);
+    if (presetToEdit) {
+      setEditingPresetItem(presetToEdit);
+      setPresetFormLabel(presetToEdit.label);
+      setPresetFormXp(presetToEdit.xp);
+      setPresetFormNote(presetToEdit.note);
+    } else {
+      setEditingPresetItem(null);
+      setPresetFormLabel('');
+      setPresetFormXp(type === 'reward' ? 100 : 50);
+      setPresetFormNote('');
+    }
+    setPresetModalOpen(true);
+  };
+
+  const handleSavePresetForm = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!presetFormLabel.trim() || !presetFormNote.trim()) {
+      alert('Mohon isi nama preset dan keterangannya');
+      return;
+    }
+
+    const cleanXp = Math.min(1000, Math.max(1, Number(presetFormXp) || 1));
+
+    if (editingPresetItem) {
+      // Edit existing
+      const updatedItem: XPPreset = {
+        ...editingPresetItem,
+        label: presetFormLabel.trim(),
+        xp: cleanXp,
+        note: presetFormNote.trim(),
+      };
+
+      if (presetModalType === 'reward') {
+        setRewardPresets((prev) => prev.map((p) => (p.id === updatedItem.id ? updatedItem : p)));
+      } else {
+        setPenaltyPresets((prev) => prev.map((p) => (p.id === updatedItem.id ? updatedItem : p)));
+      }
+      setSuccessToast(`Preset "${updatedItem.label}" berhasil diperbarui!`);
+    } else {
+      // Add new preset
+      const newItem: XPPreset = {
+        id: `preset-${Date.now()}-${Math.random().toString(36).substring(2, 5)}`,
+        label: presetFormLabel.trim(),
+        xp: cleanXp,
+        note: presetFormNote.trim(),
+        type: presetModalType,
+      };
+
+      if (presetModalType === 'reward') {
+        setRewardPresets((prev) => [...prev, newItem]);
+      } else {
+        setPenaltyPresets((prev) => [...prev, newItem]);
+      }
+      setSuccessToast(`Preset baru "${newItem.label}" berhasil ditambahkan!`);
+    }
+
+    // Reset form fields
+    setEditingPresetItem(null);
+    setPresetFormLabel('');
+    setPresetFormNote('');
+    setTimeout(() => setSuccessToast(null), 3000);
+  };
+
+  const handleDeletePreset = (id: string, type: 'reward' | 'penalty') => {
+    if (window.confirm('Hapus preset ini?')) {
+      if (type === 'reward') {
+        setRewardPresets((prev) => prev.filter((p) => p.id !== id));
+      } else {
+        setPenaltyPresets((prev) => prev.filter((p) => p.id !== id));
+      }
+      if (editingPresetItem?.id === id) {
+        setEditingPresetItem(null);
+        setPresetFormLabel('');
+        setPresetFormNote('');
+      }
+    }
+  };
+
+  const handleResetPresetsToDefault = (type: 'reward' | 'penalty') => {
+    if (window.confirm(`Kembalikan daftar preset ${type === 'reward' ? 'Reward' : 'Penalti'} ke default awal?`)) {
+      if (type === 'reward') {
+        setRewardPresets(DEFAULT_REWARD_PRESETS);
+      } else {
+        setPenaltyPresets(DEFAULT_PENALTY_PRESETS);
+      }
+      setEditingPresetItem(null);
     }
   };
 
@@ -271,12 +407,14 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
           <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400">
             <ShieldAlert className="w-4 h-4" />
             <span>KONTROL UTAMA GURU (KENDALI PENUH XP)</span>
+            <span className="bg-slate-800 text-slate-300 font-mono px-2 py-0.5 rounded-full border border-slate-700">
+              {students.length} Siswa Aktif
+            </span>
           </div>
           <h2 className="text-xl font-bold text-white mt-1">Input Reward, Penalti & Roster Siswa</h2>
           <p className="text-xs text-slate-400 mt-1 max-w-2xl leading-relaxed">
-            Guru memegang kendali manual untuk menambah (Reward) atau mengurangi (Penalti) poin siswa.
-            Semua input dicatat secara transparan pada sheet <strong>'Riwayat XP'</strong> dan otomatis
-            menghitung Total XP, Level, Badge, dan Perk di sheet <strong>'Master Data Siswa'</strong>.
+            Guru memegang kendali manual untuk menambah (Reward) atau mengurangi (Penalti) poin siswa di rentang <strong>1 – 1.000 XP</strong>.
+            Semua input dicatat pada sheet <strong>'Riwayat XP'</strong> dan otomatis memperbarui leaderboard.
           </p>
         </div>
 
@@ -298,14 +436,24 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
             <span>{isAddingStudent ? 'Batal' : '+ Tambah Siswa'}</span>
           </button>
 
+          {/* Secure reset button requiring text confirmation to prevent accidental student data loss */}
           <button
             onClick={() => {
-              if (window.confirm('Kosongkan semua data siswa dan catatan XP untuk memulai dari awal?')) {
-                onResetDemoData();
+              if (students.length > 0) {
+                const confirmation = window.prompt(
+                  `PERINGATAN KESELAMATAN DATA:\nSaat ini terdapat ${students.length} data siswa terdaftar!\n\nJika Anda yakin ingin mengosongkan seluruh data siswa & riwayat XP, ketik kata "RESET":`
+                );
+                if (confirmation === 'RESET') {
+                  onResetDemoData();
+                }
+              } else {
+                if (window.confirm('Kosongkan semua data kelas?')) {
+                  onResetDemoData();
+                }
               }
             }}
             className="p-2 text-slate-400 hover:text-rose-400 bg-slate-800/60 hover:bg-slate-800 border border-slate-700/60 rounded-xl transition-colors cursor-pointer"
-            title="Kosongkan Semua Data"
+            title="Kosongkan Semua Data (Memerlukan Konfirmasi)"
           >
             <RotateCcw className="w-4 h-4" />
           </button>
@@ -357,7 +505,7 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
           }`}
         >
           <Users className="w-3.5 h-3.5 text-cyan-400" />
-          <span>Kelola Roster Siswa ({students.length} Siswa)</span>
+          <span>Kelola Roster Siswa ({students.length} Siswa Terdaftar)</span>
         </button>
       </div>
 
@@ -417,7 +565,7 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
             <form onSubmit={handleBatchImportSubmit} className="p-5 space-y-4 flex-1 overflow-y-auto">
               <div className="text-xs text-slate-300 leading-relaxed">
                 Salin kolom nama siswa dari file <strong>Excel</strong> atau <strong>Google Sheets</strong> Anda,
-                lalu tempelkan di kotak bawah ini (satu nama per baris). Sistem akan otomatis membuatkan ID
+                lalu tempelkan di kotak bawah ini (satu nama per baris). Sistem akan otomatis menetapkan nomor ID
                 seperti <code className="text-emerald-300 font-mono">SCI-001</code>, <code className="text-emerald-300 font-mono">SCI-002</code>, dst.
               </div>
 
@@ -598,7 +746,7 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
                   </button>
                 </div>
 
-                {/* Point Value & Date */}
+                {/* Point Value & Date - FIX: min=1, max=1000, step=1 to allow any integer 1-1000 without 96/101 step validation errors! */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   <div>
                     <label className="block text-xs font-medium text-slate-400 mb-1">
@@ -615,14 +763,24 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
                       <input
                         type="number"
                         min="1"
-                        max="5000"
-                        step="5"
+                        max="1000"
+                        step="1"
                         value={xpValue}
-                        onChange={(e) => setXpValue(Math.max(1, parseInt(e.target.value) || 0))}
+                        onChange={(e) => {
+                          const val = parseInt(e.target.value);
+                          if (isNaN(val)) {
+                            setXpValue(1);
+                          } else {
+                            setXpValue(Math.min(1000, Math.max(1, val)));
+                          }
+                        }}
                         className="w-full pl-8 pr-3 py-2 text-xs bg-slate-950 border border-slate-700 rounded-xl text-white font-mono font-semibold focus:outline-none focus:border-emerald-500"
                         required
                       />
                     </div>
+                    <span className="text-[10px] text-slate-400 mt-1 block">
+                      Rentang diperbolehkan: 1 – 1.000 XP
+                    </span>
                   </div>
 
                   <div>
@@ -682,62 +840,120 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
               </form>
             </div>
 
-            {/* Right Column: Fast Preset Selector (5 cols) */}
+            {/* Right Column: Editable Fast Preset Selector (5 cols) */}
             <div className="lg:col-span-5 space-y-4">
+              {/* Reward Presets Card */}
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-md">
-                <div className="text-xs font-bold text-emerald-400 flex items-center gap-1.5 mb-3">
-                  <PlusCircle className="w-3.5 h-3.5" />
-                  <span>Preset Reward Cepat (Sains)</span>
-                </div>
-                <div className="space-y-2">
-                  {rewardPresets.map((pr, idx) => (
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-xs font-bold text-emerald-400 flex items-center gap-1.5">
+                    <PlusCircle className="w-3.5 h-3.5" />
+                    <span>Preset Reward Cepat (Sains)</span>
+                  </div>
+                  <div className="flex items-center gap-1">
                     <button
-                      key={idx}
                       type="button"
-                      onClick={() => handleApplyPreset(pr, 'reward')}
-                      className="w-full text-left p-2.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-800/40 transition-colors flex items-center justify-between group cursor-pointer"
+                      onClick={() => openPresetModal('reward')}
+                      className="text-[11px] font-semibold text-emerald-400 hover:text-emerald-300 px-2 py-1 rounded bg-emerald-950/60 border border-emerald-800/40 hover:bg-emerald-900 transition-colors cursor-pointer flex items-center gap-1"
+                      title="Kelola, Edit, atau Tambah Preset Reward"
                     >
-                      <div className="pr-2">
+                      <Settings className="w-3 h-3" />
+                      <span>Edit Preset</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  {rewardPresets.map((pr) => (
+                    <div
+                      key={pr.id}
+                      className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-800/40 transition-colors flex items-center justify-between group"
+                    >
+                      <button
+                        type="button"
+                        onClick={() => handleApplyPreset(pr)}
+                        className="text-left flex-1 pr-2 cursor-pointer"
+                        title="Klik untuk terapkan ke formulir input XP"
+                      >
                         <div className="text-xs font-semibold text-slate-200 group-hover:text-emerald-300">
                           {pr.label}
                         </div>
-                        <div className="text-[11px] text-slate-500 truncate max-w-[220px]">
+                        <div className="text-[11px] text-slate-500 truncate max-w-[200px]">
                           {pr.note}
                         </div>
+                      </button>
+
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2 py-0.5 rounded">
+                          +{pr.xp} XP
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => openPresetModal('reward', pr)}
+                          className="p-1 text-slate-500 hover:text-emerald-400 hover:bg-slate-800 rounded transition-colors cursor-pointer"
+                          title="Edit preset ini"
+                        >
+                          <Edit2 className="w-3 h-3" />
+                        </button>
                       </div>
-                      <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-950/60 border border-emerald-800/40 px-2 py-0.5 rounded shrink-0">
-                        +{pr.xp} XP
-                      </span>
-                    </button>
+                    </div>
                   ))}
                 </div>
               </div>
 
+              {/* Penalty Presets Card */}
               <div className="bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-md">
-                <div className="text-xs font-bold text-rose-400 flex items-center gap-1.5 mb-3">
-                  <AlertTriangle className="w-3.5 h-3.5" />
-                  <span>Preset Penalti Disiplin / Lab</span>
-                </div>
-                <div className="space-y-2">
-                  {penaltyPresets.map((pr, idx) => (
+                <div className="flex items-center justify-between mb-3">
+                  <div className="text-xs font-bold text-rose-400 flex items-center gap-1.5">
+                    <AlertTriangle className="w-3.5 h-3.5" />
+                    <span>Preset Penalti Disiplin / Lab</span>
+                  </div>
+                  <div className="flex items-center gap-1">
                     <button
-                      key={idx}
                       type="button"
-                      onClick={() => handleApplyPreset(pr, 'penalty')}
-                      className="w-full text-left p-2.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-rose-500/50 hover:bg-slate-800/40 transition-colors flex items-center justify-between group cursor-pointer"
+                      onClick={() => openPresetModal('penalty')}
+                      className="text-[11px] font-semibold text-rose-400 hover:text-rose-300 px-2 py-1 rounded bg-rose-950/60 border border-rose-800/40 hover:bg-rose-900 transition-colors cursor-pointer flex items-center gap-1"
+                      title="Kelola, Edit, atau Tambah Preset Penalti"
                     >
-                      <div className="pr-2">
+                      <Settings className="w-3 h-3" />
+                      <span>Edit Preset</span>
+                    </button>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  {penaltyPresets.map((pr) => (
+                    <div
+                      key={pr.id}
+                      className="w-full p-2.5 rounded-xl bg-slate-950 border border-slate-800 hover:border-rose-500/50 hover:bg-slate-800/40 transition-colors flex items-center justify-between group"
+                    >
+                      <button
+                        type="button"
+                        onClick={() => handleApplyPreset(pr)}
+                        className="text-left flex-1 pr-2 cursor-pointer"
+                        title="Klik untuk terapkan ke formulir input XP"
+                      >
                         <div className="text-xs font-semibold text-slate-200 group-hover:text-rose-300">
                           {pr.label}
                         </div>
-                        <div className="text-[11px] text-slate-500 truncate max-w-[220px]">
+                        <div className="text-[11px] text-slate-500 truncate max-w-[200px]">
                           {pr.note}
                         </div>
+                      </button>
+
+                      <div className="flex items-center gap-1.5 shrink-0">
+                        <span className="text-xs font-mono font-bold text-rose-400 bg-rose-950/60 border border-rose-800/40 px-2 py-0.5 rounded">
+                          -{pr.xp} XP
+                        </span>
+                        <button
+                          type="button"
+                          onClick={() => openPresetModal('penalty', pr)}
+                          className="p-1 text-slate-500 hover:text-rose-400 hover:bg-slate-800 rounded transition-colors cursor-pointer"
+                          title="Edit preset ini"
+                        >
+                          <Edit2 className="w-3 h-3" />
+                        </button>
                       </div>
-                      <span className="text-xs font-mono font-bold text-rose-400 bg-rose-950/60 border border-rose-800/40 px-2 py-0.5 rounded shrink-0">
-                        -{pr.xp} XP
-                      </span>
-                    </button>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -875,7 +1091,7 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
             <div>
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
                 <Users className="w-4 h-4 text-emerald-400" />
-                <span>Daftar Siswa Kelas Science ({students.length} Siswa)</span>
+                <span>Daftar Siswa Kelas Science ({students.length} Siswa Terdaftar)</span>
               </h3>
               <p className="text-xs text-slate-400 mt-0.5">
                 Kelola nama, periksa total XP, atau hapus siswa yang salah diinput.
@@ -1007,6 +1223,244 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
                 </tbody>
               </table>
             )}
+          </div>
+        </div>
+      )}
+
+      {/* MODAL: KELOLA & EDIT PRESET REWARD & PENALTI */}
+      {presetModalOpen && (
+        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-slate-900 border border-slate-700 rounded-2xl max-w-xl w-full max-h-[92vh] flex flex-col shadow-2xl animate-fade-in">
+            <div className="p-5 border-b border-slate-800 flex items-center justify-between">
+              <div>
+                <span className="text-[10px] uppercase font-bold text-emerald-400">
+                  Konfigurasi Preset Guru
+                </span>
+                <h3 className="text-base font-bold text-white">
+                  Kelola & Edit Preset Cepat
+                </h3>
+              </div>
+              <button
+                onClick={() => setPresetModalOpen(false)}
+                className="text-slate-400 hover:text-white p-1 cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="p-5 overflow-y-auto space-y-6 flex-1">
+              {/* Type Switcher */}
+              <div className="grid grid-cols-2 gap-2 p-1 bg-slate-950 rounded-xl border border-slate-800 text-xs font-semibold">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPresetModalType('reward');
+                    setEditingPresetItem(null);
+                    setPresetFormLabel('');
+                    setPresetFormXp(100);
+                    setPresetFormNote('');
+                  }}
+                  className={`py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+                    presetModalType === 'reward'
+                      ? 'bg-emerald-950 text-emerald-300 border border-emerald-600/50 shadow'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  <PlusCircle className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Preset Reward (+)</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setPresetModalType('penalty');
+                    setEditingPresetItem(null);
+                    setPresetFormLabel('');
+                    setPresetFormXp(50);
+                    setPresetFormNote('');
+                  }}
+                  className={`py-2 px-3 rounded-lg flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+                    presetModalType === 'penalty'
+                      ? 'bg-rose-950 text-rose-300 border border-rose-600/50 shadow'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  <MinusCircle className="w-3.5 h-3.5 text-rose-400" />
+                  <span>Preset Penalti (-)</span>
+                </button>
+              </div>
+
+              {/* Form Add / Edit Preset */}
+              <form
+                onSubmit={handleSavePresetForm}
+                className="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3"
+              >
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs font-bold text-white flex items-center gap-1.5">
+                    {editingPresetItem ? (
+                      <>
+                        <Edit2 className="w-3.5 h-3.5 text-cyan-400" />
+                        <span>Edit Preset: {editingPresetItem.label}</span>
+                      </>
+                    ) : (
+                      <>
+                        <Plus className="w-3.5 h-3.5 text-emerald-400" />
+                        <span>Tambah Preset {presetModalType === 'reward' ? 'Reward' : 'Penalti'} Baru</span>
+                      </>
+                    )}
+                  </h4>
+                  {editingPresetItem && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditingPresetItem(null);
+                        setPresetFormLabel('');
+                        setPresetFormXp(presetModalType === 'reward' ? 100 : 50);
+                        setPresetFormNote('');
+                      }}
+                      className="text-[11px] text-slate-400 hover:text-white"
+                    >
+                      Batal Edit
+                    </button>
+                  )}
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="sm:col-span-2">
+                    <label className="block text-[11px] text-slate-400 mb-1">
+                      Nama / Judul Preset:
+                    </label>
+                    <input
+                      type="text"
+                      value={presetFormLabel}
+                      onChange={(e) => setPresetFormLabel(e.target.value)}
+                      placeholder="Contoh: Praktikum Sangat Disiplin"
+                      className="w-full px-3 py-1.5 text-xs bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-emerald-500"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] text-slate-400 mb-1">
+                      Poin XP (1 – 1.000):
+                    </label>
+                    <input
+                      type="number"
+                      min="1"
+                      max="1000"
+                      step="1"
+                      value={presetFormXp}
+                      onChange={(e) => {
+                        const v = parseInt(e.target.value);
+                        setPresetFormXp(isNaN(v) ? 1 : Math.min(1000, Math.max(1, v)));
+                      }}
+                      className="w-full px-3 py-1.5 text-xs bg-slate-900 border border-slate-700 rounded-lg text-white font-mono focus:outline-none focus:border-emerald-500 font-bold"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[11px] text-slate-400 mb-1">
+                    Keterangan Otomatis (Dicatat ke Riwayat XP):
+                  </label>
+                  <input
+                    type="text"
+                    value={presetFormNote}
+                    onChange={(e) => setPresetFormNote(e.target.value)}
+                    placeholder="Contoh: Mematuhi seluruh SOP keselamatan laboratorium"
+                    className="w-full px-3 py-1.5 text-xs bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:border-emerald-500"
+                    required
+                  />
+                </div>
+
+                <div className="flex justify-end pt-1">
+                  <button
+                    type="submit"
+                    className="px-4 py-1.5 text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded-lg transition-colors cursor-pointer"
+                  >
+                    {editingPresetItem ? 'Simpan Perubahan' : '+ Tambahkan Preset'}
+                  </button>
+                </div>
+              </form>
+
+              {/* Current Presets List */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between text-xs font-semibold text-slate-400">
+                  <span>
+                    Daftar Preset {presetModalType === 'reward' ? 'Reward' : 'Penalti'} Saat Ini:
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => handleResetPresetsToDefault(presetModalType)}
+                    className="text-[11px] text-slate-500 hover:text-amber-400 transition-colors"
+                  >
+                    Reset ke Default Awal
+                  </button>
+                </div>
+
+                <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
+                  {(presetModalType === 'reward' ? rewardPresets : penaltyPresets).map((pr) => (
+                    <div
+                      key={pr.id}
+                      className="p-2.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between text-xs group"
+                    >
+                      <div className="pr-3 flex-1">
+                        <div className="font-semibold text-white flex items-center gap-2">
+                          <span>{pr.label}</span>
+                          <span
+                            className={`font-mono text-[11px] font-bold px-1.5 py-0.2 rounded ${
+                              presetModalType === 'reward'
+                                ? 'text-emerald-400 bg-emerald-950/60'
+                                : 'text-rose-400 bg-rose-950/60'
+                            }`}
+                          >
+                            {presetModalType === 'reward' ? '+' : '-'}{pr.xp} XP
+                          </span>
+                        </div>
+                        <div className="text-[11px] text-slate-400 truncate mt-0.5">
+                          {pr.note}
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-1 shrink-0">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEditingPresetItem(pr);
+                            setPresetFormLabel(pr.label);
+                            setPresetFormXp(pr.xp);
+                            setPresetFormNote(pr.note);
+                          }}
+                          className="p-1.5 text-slate-400 hover:text-cyan-400 rounded hover:bg-slate-800 transition-colors cursor-pointer"
+                          title="Edit preset ini"
+                        >
+                          <Edit2 className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDeletePreset(pr.id, presetModalType)}
+                          className="p-1.5 text-slate-400 hover:text-rose-400 rounded hover:bg-slate-800 transition-colors cursor-pointer"
+                          title="Hapus preset ini"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="p-4 border-t border-slate-800 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setPresetModalOpen(false)}
+                className="px-4 py-2 text-xs font-semibold text-slate-300 bg-slate-800 hover:bg-slate-700 rounded-xl cursor-pointer"
+              >
+                Selesai & Tutup
+              </button>
+            </div>
           </div>
         </div>
       )}
