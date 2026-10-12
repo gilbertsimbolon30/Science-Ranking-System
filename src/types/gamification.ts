@@ -25,6 +25,7 @@ export interface Student {
   username?: string;
   avatarSeed?: string;
   isActive?: boolean;
+  createdAt?: string;
   mustChangePassword?: boolean;
   lastLogin?: string | null;
   activePerksUsed?: Record<string, number>;

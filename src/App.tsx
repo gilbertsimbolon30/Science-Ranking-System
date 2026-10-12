@@ -217,6 +217,21 @@ export default function App() {
     }
   };
 
+  const handleReplaceBatchStudents = async (names: string[]) => {
+    try {
+      const res = await api.replaceAllStudents(names);
+      setStudents(res.students);
+      const freshXP = await api.getTeacherXPRecords();
+      setXpRecords(freshXP);
+      const freshPrivs = await api.getTeacherPrivileges();
+      setPrivileges(freshPrivs);
+      const logs = await api.getActivityLogs();
+      setActivityLogs(logs);
+    } catch (err: any) {
+      alert(err.message || 'Gagal mengganti data siswa.');
+    }
+  };
+
   const handleDeleteStudent = async (studentId: string) => {
     try {
       await api.deleteTeacherStudent(studentId);
@@ -479,6 +494,7 @@ export default function App() {
             onDeleteXPRecord={handleDeleteXPRecord}
             onAddStudent={handleAddStudent}
             onAddBatchStudents={handleAddBatchStudents}
+            onReplaceBatchStudents={handleReplaceBatchStudents}
             onDeleteStudent={handleDeleteStudent}
             onEditStudent={handleEditStudent}
             onResetStudentPassword={handleResetStudentPassword}

@@ -6,14 +6,10 @@ import {
   User,
   Eye,
   EyeOff,
-  Sparkles,
   FlaskConical,
-  GraduationCap,
   AlertCircle,
   Loader2,
-  KeyRound,
   ShieldCheck,
-  CheckCircle2,
 } from 'lucide-react';
 
 interface LoginViewProps {
@@ -54,12 +50,6 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
     }
   };
 
-  const handleQuickFill = (u: string, p: string) => {
-    setUsername(u);
-    setPassword(p);
-    setErrorMessage(null);
-  };
-
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center px-4 py-12 relative overflow-hidden">
       {/* Background ambient lighting */}
@@ -90,7 +80,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
           <div className="mb-6">
             <h2 className="text-lg font-bold text-white">Masuk ke Akun Anda</h2>
             <p className="text-xs text-slate-400 mt-0.5">
-              Masukkan ID Guru atau Nama Siswa terdaftar untuk mengakses dashboard.
+              Masukkan ID Pengguna dan Kata Sandi untuk mengakses dashboard.
             </p>
           </div>
 
@@ -114,7 +104,7 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
                   type="text"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  placeholder="Contoh: Guru atau Abigail J"
+                  placeholder="Masukkan ID Pengguna atau Nama Anda"
                   className="w-full bg-slate-950 border border-slate-700/80 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                   autoComplete="username"
                   disabled={isLoading}
@@ -172,59 +162,6 @@ export const LoginView: React.FC<LoginViewProps> = ({ onLoginSuccess }) => {
               )}
             </button>
           </form>
-
-          {/* Quick Credential Hints for Testing & Onboarding */}
-          <div className="mt-6 pt-5 border-t border-slate-800 text-xs text-slate-400">
-            <div className="flex items-center gap-1.5 font-semibold text-slate-300 mb-2">
-              <KeyRound className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Petunjuk Akses Awal:</span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-2">
-              <button
-                type="button"
-                onClick={() => handleQuickFill('Guru', 'Science')}
-                className="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 hover:border-emerald-500/50 hover:bg-slate-800/50 text-left transition-all group cursor-pointer"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-emerald-400 group-hover:text-emerald-300">Akun Guru</span>
-                  <span className="text-[10px] text-slate-500">Klik</span>
-                </div>
-                <div className="text-[11px] text-slate-300 mt-1">ID: <code className="text-white font-mono">Guru</code></div>
-                <div className="text-[11px] text-slate-400">Pass: <code className="text-white font-mono">Science</code></div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleQuickFill('Dummy', '123')}
-                className="p-2.5 rounded-lg bg-slate-950/80 border border-purple-500/40 hover:border-purple-400 hover:bg-slate-800/50 text-left transition-all group cursor-pointer shadow-sm"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-purple-400 group-hover:text-purple-300">Dummy Siswa</span>
-                  <span className="text-[10px] text-purple-400 font-semibold">Test</span>
-                </div>
-                <div className="text-[11px] text-slate-300 mt-1">ID: <code className="text-white font-mono">Dummy</code></div>
-                <div className="text-[11px] text-slate-400">Pass: <code className="text-white font-mono">123</code></div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => handleQuickFill('Abigail J', '123456')}
-                className="p-2.5 rounded-lg bg-slate-950/80 border border-slate-800 hover:border-cyan-500/50 hover:bg-slate-800/50 text-left transition-all group cursor-pointer"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-bold text-cyan-400 group-hover:text-cyan-300">Siswa Roster</span>
-                  <span className="text-[10px] text-slate-500">Klik</span>
-                </div>
-                <div className="text-[11px] text-slate-300 mt-1">ID: <code className="text-white font-mono">Abigail J</code></div>
-                <div className="text-[11px] text-slate-400">Pass: <code className="text-white font-mono">123456</code></div>
-              </button>
-            </div>
-
-            <p className="text-[11px] text-slate-500 mt-3 leading-relaxed">
-              * Siswa yang pertama kali login akan langsung diminta mengganti kata sandi bawaan (123456) demi keamanan akun.
-            </p>
-          </div>
         </div>
       </div>
     </div>

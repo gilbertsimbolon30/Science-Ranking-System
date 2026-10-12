@@ -72,6 +72,7 @@ interface TeacherControlPanelProps {
   onDeleteXPRecord: (recordId: string) => Promise<void> | void;
   onAddStudent: (name: string, customUsername?: string) => Promise<void> | void;
   onAddBatchStudents: (names: string[]) => Promise<void> | void;
+  onReplaceBatchStudents?: (names: string[]) => Promise<void> | void;
   onDeleteStudent: (studentId: string) => Promise<void> | void;
   onEditStudent: (studentId: string, newName: string, newUsername?: string) => Promise<void> | void;
   onResetStudentPassword: (studentId: string) => Promise<void> | void;
@@ -98,6 +99,7 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
   onDeleteXPRecord,
   onAddStudent,
   onAddBatchStudents,
+  onReplaceBatchStudents,
   onDeleteStudent,
   onEditStudent,
   onResetStudentPassword,
@@ -135,6 +137,7 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
   // Batch paste students modal state
   const [isBatchImportModalOpen, setIsBatchImportModalOpen] = useState<boolean>(false);
   const [batchNamesInput, setBatchNamesInput] = useState<string>('');
+  const [batchImportMode, setBatchImportMode] = useState<'replace' | 'append'>('replace');
 
   // Editing student state
   const [editingStudentId, setEditingStudentId] = useState<string | null>(null);
@@ -318,11 +321,20 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
       return;
     }
 
-    await onAddBatchStudents(rawLines);
+    if (batchImportMode === 'replace' && onReplaceBatchStudents) {
+      const confirmMsg = `PERINGATAN: Anda akan MENGGANTI seluruh 42 data siswa lama dengan ${rawLines.length} siswa baru.\n\nAkun Dummy dan Akun Guru akan tetap aman.\n\nLanjutkan?`;
+      if (!window.confirm(confirmMsg)) return;
+
+      await onReplaceBatchStudents(rawLines);
+      setSuccessToast(`Berhasil mengganti data kelas dengan ${rawLines.length} siswa baru!`);
+    } else {
+      await onAddBatchStudents(rawLines);
+      setSuccessToast(`Berhasil menambahkan ${rawLines.length} siswa ke dalam kelas!`);
+    }
+
     setBatchNamesInput('');
     setIsBatchImportModalOpen(false);
-    setSuccessToast(`Berhasil menambahkan ${rawLines.length} siswa ke dalam kelas!`);
-    setTimeout(() => setSuccessToast(null), 3000);
+    setTimeout(() => setSuccessToast(null), 3500);
   };
 
   const startEditStudent = (s: Student) => {
@@ -1673,27 +1685,85 @@ export const TeacherControlPanel: React.FC<TeacherControlPanelProps> = ({
             </div>
 
             <form onSubmit={handleBatchImportSubmit} className="p-5 flex-1 flex flex-col gap-4">
-              <textarea
-                value={batchNamesInput}
-                onChange={(e) => setBatchNamesInput(e.target.value)}
-                rows={8}
-                placeholder="Contoh:&#10;Abigail J&#10;Ahmad Fauzi&#10;Alisha Putri&#10;Arya Pratama"
-                className="w-full flex-1 p-3 bg-slate-950 border border-slate-700 rounded-xl text-white font-mono text-xs focus:outline-none focus:border-emerald-500"
-                required
-              />
-              <div className="flex justify-end gap-2">
+              {/* Mode Selection */}
+              <div className="space-y-2">
+                <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider">
+                  Pilih Tindakan Database:
+                </label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setBatchImportMode('replace')}
+                    className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                      batchImportMode === 'replace'
+                        ? 'bg-amber-500/10 border-amber-500/50 text-amber-200 ring-1 ring-amber-500/30'
+                        : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:border-slate-700'
+                    }`}
+                  >
+                    <div className="text-xs font-bold flex items-center gap-1.5">
+                      <span className={`w-2 h-2 rounded-full ${batchImportMode === 'replace' ? 'bg-amber-400' : 'bg-slate-600'}`} />
+                      <span>Ganti / Replace Data Siswa</span>
+                    </div>
+                    <div className="text-[11px] text-slate-400 mt-1 leading-relaxed">
+                      Timpa 42 siswa lama dengan daftar baru. <span className="text-emerald-400 font-semibold">Akun Dummy & Guru tetap aman.</span>
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setBatchImportMode('append')}
+                    className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
+                      batchImportMode === 'append'
+                        ? 'bg-emerald-500/10 border-emerald-500/50 text-emerald-200 ring-1 ring-emerald-500/30'
+                        : 'bg-slate-950/60 border-slate-800 text-slate-400 hover:border-slate-700'
+                    }`}
+                  >
+                    <div className="text-xs font-bold flex items-center gap-1.5">
+                      <span className={`w-2 h-2 rounded-full ${batchImportMode === 'append' ? 'bg-emerald-400' : 'bg-slate-600'}`} />
+                      <span>Tambahkan ke Daftar Ada</span>
+                    </div>
+                    <div className="text-[11px] text-slate-400 mt-1 leading-relaxed">
+                      Tambahkan nama baru tanpa menghapus data siswa yang sudah ada.
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+                  Tempel Daftar Nama Siswa (1 nama per baris):
+                </label>
+                <textarea
+                  value={batchNamesInput}
+                  onChange={(e) => setBatchNamesInput(e.target.value)}
+                  rows={7}
+                  placeholder="Contoh:&#10;Abigail J&#10;Anne M&#10;Davin M&#10;Destan X"
+                  className="w-full p-3 bg-slate-950 border border-slate-700 rounded-xl text-white font-mono text-xs focus:outline-none focus:border-emerald-500 placeholder-slate-600"
+                  required
+                />
+                <p className="text-[11px] text-slate-400 mt-1.5 flex items-center gap-1.5">
+                  <span className="text-emerald-400 font-bold">✓ Info:</span>
+                  <span>Username otomatis sama dengan Nama Siswa. Password default: <strong>123456</strong>.</span>
+                </p>
+              </div>
+
+              <div className="flex justify-end gap-2 pt-2 border-t border-slate-800">
                 <button
                   type="button"
                   onClick={() => setIsBatchImportModalOpen(false)}
-                  className="px-4 py-2 text-xs text-slate-400 hover:text-white"
+                  className="px-4 py-2 text-xs text-slate-400 hover:text-white cursor-pointer"
                 >
-                  Batal
+                  Batal / Kembali
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-xs font-bold bg-emerald-400 hover:bg-emerald-300 text-slate-950 rounded-xl"
+                  className={`px-4 py-2 text-xs font-bold rounded-xl cursor-pointer transition-all shadow-lg ${
+                    batchImportMode === 'replace'
+                      ? 'bg-amber-400 hover:bg-amber-300 text-slate-950 shadow-amber-500/20'
+                      : 'bg-emerald-400 hover:bg-emerald-300 text-slate-950 shadow-emerald-500/20'
+                  }`}
                 >
-                  Impor & Buat Akun Siswa
+                  {batchImportMode === 'replace' ? 'Ganti & Simpan Seluruh Siswa Baru' : 'Tambahkan Siswa ke Kelas'}
                 </button>
               </div>
             </form>

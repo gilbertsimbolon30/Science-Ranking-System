@@ -562,6 +562,83 @@ app.post('/api/teacher/students/batch', authenticateToken, requireTeacher, (req:
   res.json({ success: true, count: addedStudents.length, students: addedStudents });
 });
 
+// POST /api/teacher/students/replace (Replace all students except dummy)
+app.post('/api/teacher/students/replace', authenticateToken, requireTeacher, (req: AuthenticatedRequest, res: Response) => {
+  const { names } = req.body;
+  if (!Array.isArray(names) || names.length === 0) {
+    return res.status(400).json({ error: 'Daftar nama siswa baru wajib diisi.' });
+  }
+
+  const db = getDatabase();
+  const now = new Date().toISOString();
+  const initialPass = hashPassword('123456');
+
+  // Retain Dummy student and non-student users (e.g. Teacher)
+  const dummyStudent = db.students.find((s) => s.id === 'SCI-DUMMY' || s.username?.toLowerCase() === 'dummy');
+  const retainedStudents: StudentProfile[] = dummyStudent ? [dummyStudent] : [];
+
+  // Retain teacher and dummy users
+  const retainedUsers = db.users.filter(
+    (u) => u.role === 'teacher' || u.username.toLowerCase() === 'dummy' || u.studentId === 'SCI-DUMMY'
+  );
+
+  // Retain XP records of dummy student
+  const retainedXP = db.xpRecords.filter((xp) => xp.idSiswa === 'SCI-DUMMY');
+  const retainedPrivileges = db.privileges.filter((p) => p.studentId === 'SCI-DUMMY');
+
+  const newStudents: StudentProfile[] = [];
+
+  names.forEach((rawName, index) => {
+    const cleanName = String(rawName).trim();
+    if (!cleanName) return;
+
+    const studentId = `SCI-${String(index + 1).padStart(3, '0')}`;
+    const username = cleanName;
+
+    const student: StudentProfile = {
+      id: studentId,
+      name: cleanName,
+      username,
+      avatarSeed: `seed-${studentId}`,
+      isActive: true,
+      createdAt: now,
+    };
+
+    const user: UserAccount = {
+      id: `user-${studentId}`,
+      username,
+      name: cleanName,
+      role: 'student',
+      studentId,
+      passwordHash: initialPass.hash,
+      salt: initialPass.salt,
+      mustChangePassword: true,
+      isActive: true,
+      createdAt: now,
+      updatedAt: now,
+    };
+
+    newStudents.push(student);
+    retainedUsers.push(user);
+  });
+
+  db.students = [...newStudents, ...retainedStudents];
+  db.users = retainedUsers;
+  db.xpRecords = retainedXP;
+  db.privileges = retainedPrivileges;
+
+  saveDatabase();
+  logActivity(
+    req.user!.userId,
+    req.user!.name,
+    'teacher',
+    'REPLACE_ALL_STUDENTS',
+    `Mengganti seluruh data siswa dengan ${newStudents.length} siswa baru (akun Dummy dipertahankan).`
+  );
+
+  res.json({ success: true, count: newStudents.length, students: db.students });
+});
+
 // PUT /api/teacher/students/:id (Edit student)
 app.put('/api/teacher/students/:id', authenticateToken, requireTeacher, (req: AuthenticatedRequest, res: Response) => {
   const { id } = req.params;
