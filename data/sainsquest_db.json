@@ -1,0 +1,1334 @@
+{
+  "users": [
+    {
+      "id": "user-teacher-guru",
+      "username": "Guru",
+      "name": "Guru Pembina Science",
+      "role": "teacher",
+      "passwordHash": "0cffe736881153350cd963a711d7e0d7bf2f268b0f978579609459b60bd3850d0c917342f57dd75d25726d5c44af8b798fcbe84fcea8340f311d6748e6c09f58",
+      "salt": "867f45c2493a7c331fc4ccffc0d7fe3c",
+      "mustChangePassword": false,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-001",
+      "username": "Abigail J",
+      "name": "Abigail J",
+      "role": "student",
+      "studentId": "SCI-001",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-002",
+      "username": "Ahmad Fauzi",
+      "name": "Ahmad Fauzi",
+      "role": "student",
+      "studentId": "SCI-002",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-003",
+      "username": "Alisha Putri",
+      "name": "Alisha Putri",
+      "role": "student",
+      "studentId": "SCI-003",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-004",
+      "username": "Arya Pratama",
+      "name": "Arya Pratama",
+      "role": "student",
+      "studentId": "SCI-004",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-005",
+      "username": "Bagas Wicaksono",
+      "name": "Bagas Wicaksono",
+      "role": "student",
+      "studentId": "SCI-005",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-006",
+      "username": "Bryan Christianto",
+      "name": "Bryan Christianto",
+      "role": "student",
+      "studentId": "SCI-006",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-007",
+      "username": "Cantika Dewi",
+      "name": "Cantika Dewi",
+      "role": "student",
+      "studentId": "SCI-007",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-008",
+      "username": "Chelsea Olivia",
+      "name": "Chelsea Olivia",
+      "role": "student",
+      "studentId": "SCI-008",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-009",
+      "username": "Daniel Wijaya",
+      "name": "Daniel Wijaya",
+      "role": "student",
+      "studentId": "SCI-009",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-010",
+      "username": "David Sitorus",
+      "name": "David Sitorus",
+      "role": "student",
+      "studentId": "SCI-010",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-011",
+      "username": "Dinda Kirana",
+      "name": "Dinda Kirana",
+      "role": "student",
+      "studentId": "SCI-011",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-012",
+      "username": "Edward Salim",
+      "name": "Edward Salim",
+      "role": "student",
+      "studentId": "SCI-012",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-013",
+      "username": "Farhan Ramadhan",
+      "name": "Farhan Ramadhan",
+      "role": "student",
+      "studentId": "SCI-013",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-014",
+      "username": "Felicia Anggraini",
+      "name": "Felicia Anggraini",
+      "role": "student",
+      "studentId": "SCI-014",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-015",
+      "username": "Gabriel Sinaga",
+      "name": "Gabriel Sinaga",
+      "role": "student",
+      "studentId": "SCI-015",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-016",
+      "username": "Gabriella Santoso",
+      "name": "Gabriella Santoso",
+      "role": "student",
+      "studentId": "SCI-016",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-017",
+      "username": "Hafiz Syahputra",
+      "name": "Hafiz Syahputra",
+      "role": "student",
+      "studentId": "SCI-017",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-018",
+      "username": "Jonathan Tanuwijaya",
+      "name": "Jonathan Tanuwijaya",
+      "role": "student",
+      "studentId": "SCI-018",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-019",
+      "username": "Joshua Michael",
+      "name": "Joshua Michael",
+      "role": "student",
+      "studentId": "SCI-019",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-020",
+      "username": "Kayla Zahra",
+      "name": "Kayla Zahra",
+      "role": "student",
+      "studentId": "SCI-020",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-021",
+      "username": "Kevin Sanjaya",
+      "name": "Kevin Sanjaya",
+      "role": "student",
+      "studentId": "SCI-021",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-022",
+      "username": "Larissa Chou",
+      "name": "Larissa Chou",
+      "role": "student",
+      "studentId": "SCI-022",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-023",
+      "username": "Marcellino Siregar",
+      "name": "Marcellino Siregar",
+      "role": "student",
+      "studentId": "SCI-023",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-024",
+      "username": "Michelle Angela",
+      "name": "Michelle Angela",
+      "role": "student",
+      "studentId": "SCI-024",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-025",
+      "username": "Muhammad Rizky",
+      "name": "Muhammad Rizky",
+      "role": "student",
+      "studentId": "SCI-025",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-026",
+      "username": "Nadine Chandrawinata",
+      "name": "Nadine Chandrawinata",
+      "role": "student",
+      "studentId": "SCI-026",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-027",
+      "username": "Nathan Alexander",
+      "name": "Nathan Alexander",
+      "role": "student",
+      "studentId": "SCI-027",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-028",
+      "username": "Nicholas Saputra",
+      "name": "Nicholas Saputra",
+      "role": "student",
+      "studentId": "SCI-028",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-029",
+      "username": "Olivia Paramitha",
+      "name": "Olivia Paramitha",
+      "role": "student",
+      "studentId": "SCI-029",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-030",
+      "username": "Rafael Simbolon",
+      "name": "Rafael Simbolon",
+      "role": "student",
+      "studentId": "SCI-030",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-031",
+      "username": "Raisa Andriana",
+      "name": "Raisa Andriana",
+      "role": "student",
+      "studentId": "SCI-031",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-032",
+      "username": "Randy Pangalila",
+      "name": "Randy Pangalila",
+      "role": "student",
+      "studentId": "SCI-032",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-033",
+      "username": "Reyhan Pratama",
+      "name": "Reyhan Pratama",
+      "role": "student",
+      "studentId": "SCI-033",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-034",
+      "username": "Samuel Hutapea",
+      "name": "Samuel Hutapea",
+      "role": "student",
+      "studentId": "SCI-034",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-035",
+      "username": "Sarah Sechan",
+      "name": "Sarah Sechan",
+      "role": "student",
+      "studentId": "SCI-035",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-036",
+      "username": "Stephanie Poetri",
+      "name": "Stephanie Poetri",
+      "role": "student",
+      "studentId": "SCI-036",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-037",
+      "username": "Timothy Ronald",
+      "name": "Timothy Ronald",
+      "role": "student",
+      "studentId": "SCI-037",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-038",
+      "username": "Valencia Tanoesoedibjo",
+      "name": "Valencia Tanoesoedibjo",
+      "role": "student",
+      "studentId": "SCI-038",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-039",
+      "username": "Vanessa Angel",
+      "name": "Vanessa Angel",
+      "role": "student",
+      "studentId": "SCI-039",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-040",
+      "username": "Vania Larissa",
+      "name": "Vania Larissa",
+      "role": "student",
+      "studentId": "SCI-040",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-041",
+      "username": "William Surya",
+      "name": "William Surya",
+      "role": "student",
+      "studentId": "SCI-041",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-SCI-042",
+      "username": "Zahra Amalia",
+      "name": "Zahra Amalia",
+      "role": "student",
+      "studentId": "SCI-042",
+      "passwordHash": "4e44f62f354e3cb5e42c72556bb4847dbd8eab0b40dcc1b15891a679000b23d393787f1f3d1d244298257c3ac590db702afb11a8cd92688057e0aa8796675cf0",
+      "salt": "9efa74e88695353793acd7552038c2c3",
+      "mustChangePassword": true,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z",
+      "updatedAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "user-dummy-student",
+      "username": "Dummy",
+      "name": "Dummy Student",
+      "role": "student",
+      "studentId": "SCI-DUMMY",
+      "passwordHash": "0d2fb16de5874732da04f76a4cf49af12e69eb4f31ea9ab2571783a7f49f4095eff3e82b5b80a182459aadacb791444e98bc91637eac450857f688ee712eb069",
+      "salt": "a7216844beac1ef0d64c7bb0c6d2ba47",
+      "mustChangePassword": false,
+      "isActive": true,
+      "createdAt": "2026-10-12T03:56:43.492Z",
+      "updatedAt": "2026-10-12T03:56:43.492Z"
+    }
+  ],
+  "students": [
+    {
+      "id": "SCI-001",
+      "name": "Abigail J",
+      "username": "Abigail J",
+      "avatarSeed": "seed-SCI-001",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-002",
+      "name": "Ahmad Fauzi",
+      "username": "Ahmad Fauzi",
+      "avatarSeed": "seed-SCI-002",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-003",
+      "name": "Alisha Putri",
+      "username": "Alisha Putri",
+      "avatarSeed": "seed-SCI-003",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-004",
+      "name": "Arya Pratama",
+      "username": "Arya Pratama",
+      "avatarSeed": "seed-SCI-004",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-005",
+      "name": "Bagas Wicaksono",
+      "username": "Bagas Wicaksono",
+      "avatarSeed": "seed-SCI-005",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-006",
+      "name": "Bryan Christianto",
+      "username": "Bryan Christianto",
+      "avatarSeed": "seed-SCI-006",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-007",
+      "name": "Cantika Dewi",
+      "username": "Cantika Dewi",
+      "avatarSeed": "seed-SCI-007",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-008",
+      "name": "Chelsea Olivia",
+      "username": "Chelsea Olivia",
+      "avatarSeed": "seed-SCI-008",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-009",
+      "name": "Daniel Wijaya",
+      "username": "Daniel Wijaya",
+      "avatarSeed": "seed-SCI-009",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-010",
+      "name": "David Sitorus",
+      "username": "David Sitorus",
+      "avatarSeed": "seed-SCI-010",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-011",
+      "name": "Dinda Kirana",
+      "username": "Dinda Kirana",
+      "avatarSeed": "seed-SCI-011",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-012",
+      "name": "Edward Salim",
+      "username": "Edward Salim",
+      "avatarSeed": "seed-SCI-012",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-013",
+      "name": "Farhan Ramadhan",
+      "username": "Farhan Ramadhan",
+      "avatarSeed": "seed-SCI-013",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-014",
+      "name": "Felicia Anggraini",
+      "username": "Felicia Anggraini",
+      "avatarSeed": "seed-SCI-014",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-015",
+      "name": "Gabriel Sinaga",
+      "username": "Gabriel Sinaga",
+      "avatarSeed": "seed-SCI-015",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-016",
+      "name": "Gabriella Santoso",
+      "username": "Gabriella Santoso",
+      "avatarSeed": "seed-SCI-016",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-017",
+      "name": "Hafiz Syahputra",
+      "username": "Hafiz Syahputra",
+      "avatarSeed": "seed-SCI-017",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-018",
+      "name": "Jonathan Tanuwijaya",
+      "username": "Jonathan Tanuwijaya",
+      "avatarSeed": "seed-SCI-018",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-019",
+      "name": "Joshua Michael",
+      "username": "Joshua Michael",
+      "avatarSeed": "seed-SCI-019",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-020",
+      "name": "Kayla Zahra",
+      "username": "Kayla Zahra",
+      "avatarSeed": "seed-SCI-020",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-021",
+      "name": "Kevin Sanjaya",
+      "username": "Kevin Sanjaya",
+      "avatarSeed": "seed-SCI-021",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-022",
+      "name": "Larissa Chou",
+      "username": "Larissa Chou",
+      "avatarSeed": "seed-SCI-022",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-023",
+      "name": "Marcellino Siregar",
+      "username": "Marcellino Siregar",
+      "avatarSeed": "seed-SCI-023",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-024",
+      "name": "Michelle Angela",
+      "username": "Michelle Angela",
+      "avatarSeed": "seed-SCI-024",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-025",
+      "name": "Muhammad Rizky",
+      "username": "Muhammad Rizky",
+      "avatarSeed": "seed-SCI-025",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-026",
+      "name": "Nadine Chandrawinata",
+      "username": "Nadine Chandrawinata",
+      "avatarSeed": "seed-SCI-026",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-027",
+      "name": "Nathan Alexander",
+      "username": "Nathan Alexander",
+      "avatarSeed": "seed-SCI-027",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-028",
+      "name": "Nicholas Saputra",
+      "username": "Nicholas Saputra",
+      "avatarSeed": "seed-SCI-028",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-029",
+      "name": "Olivia Paramitha",
+      "username": "Olivia Paramitha",
+      "avatarSeed": "seed-SCI-029",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-030",
+      "name": "Rafael Simbolon",
+      "username": "Rafael Simbolon",
+      "avatarSeed": "seed-SCI-030",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-031",
+      "name": "Raisa Andriana",
+      "username": "Raisa Andriana",
+      "avatarSeed": "seed-SCI-031",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-032",
+      "name": "Randy Pangalila",
+      "username": "Randy Pangalila",
+      "avatarSeed": "seed-SCI-032",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-033",
+      "name": "Reyhan Pratama",
+      "username": "Reyhan Pratama",
+      "avatarSeed": "seed-SCI-033",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-034",
+      "name": "Samuel Hutapea",
+      "username": "Samuel Hutapea",
+      "avatarSeed": "seed-SCI-034",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-035",
+      "name": "Sarah Sechan",
+      "username": "Sarah Sechan",
+      "avatarSeed": "seed-SCI-035",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-036",
+      "name": "Stephanie Poetri",
+      "username": "Stephanie Poetri",
+      "avatarSeed": "seed-SCI-036",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-037",
+      "name": "Timothy Ronald",
+      "username": "Timothy Ronald",
+      "avatarSeed": "seed-SCI-037",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-038",
+      "name": "Valencia Tanoesoedibjo",
+      "username": "Valencia Tanoesoedibjo",
+      "avatarSeed": "seed-SCI-038",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-039",
+      "name": "Vanessa Angel",
+      "username": "Vanessa Angel",
+      "avatarSeed": "seed-SCI-039",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-040",
+      "name": "Vania Larissa",
+      "username": "Vania Larissa",
+      "avatarSeed": "seed-SCI-040",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-041",
+      "name": "William Surya",
+      "username": "William Surya",
+      "avatarSeed": "seed-SCI-041",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-042",
+      "name": "Zahra Amalia",
+      "username": "Zahra Amalia",
+      "avatarSeed": "seed-SCI-042",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:47:52.312Z"
+    },
+    {
+      "id": "SCI-DUMMY",
+      "name": "Dummy Student",
+      "username": "Dummy",
+      "avatarSeed": "seed-dummy",
+      "isActive": true,
+      "createdAt": "2026-10-12T03:56:43.492Z"
+    }
+  ],
+  "levels": [
+    {
+      "xpMin": 0,
+      "badgeName": "Lab Recruit",
+      "tier": "Trainee",
+      "levelNumber": 1,
+      "perkDescription": "Belum ada hak istimewa"
+    },
+    {
+      "xpMin": 100,
+      "badgeName": "Lab Trainee",
+      "tier": "Trainee",
+      "levelNumber": 2,
+      "perkDescription": "Belum ada hak istimewa"
+    },
+    {
+      "xpMin": 250,
+      "badgeName": "Junior Lab Assistant",
+      "tier": "Trainee",
+      "levelNumber": 3,
+      "perkDescription": "Belum ada hak istimewa"
+    },
+    {
+      "xpMin": 450,
+      "badgeName": "Senior Lab Assistant",
+      "tier": "Trainee",
+      "levelNumber": 4,
+      "perkDescription": "Belum ada hak istimewa"
+    },
+    {
+      "xpMin": 700,
+      "badgeName": "Junior Researcher",
+      "tier": "Researcher",
+      "levelNumber": 5,
+      "perkDescription": "Boleh memilih teman kelompok praktikum"
+    },
+    {
+      "xpMin": 1000,
+      "badgeName": "Field Researcher",
+      "tier": "Researcher",
+      "levelNumber": 6,
+      "perkDescription": "Boleh memilih teman kelompok praktikum"
+    },
+    {
+      "xpMin": 1350,
+      "badgeName": "Experimental Researcher",
+      "tier": "Researcher",
+      "levelNumber": 7,
+      "perkDescription": "Boleh memilih teman kelompok praktikum"
+    },
+    {
+      "xpMin": 1750,
+      "badgeName": "Senior Researcher",
+      "tier": "Researcher",
+      "levelNumber": 8,
+      "perkDescription": "Boleh memilih teman kelompok praktikum"
+    },
+    {
+      "xpMin": 2200,
+      "badgeName": "Associate Scientist",
+      "tier": "Scientist",
+      "levelNumber": 9,
+      "perkDescription": "Dapat 1 \"Hint Card\" saat kuis"
+    },
+    {
+      "xpMin": 2700,
+      "badgeName": "Staff Scientist",
+      "tier": "Scientist",
+      "levelNumber": 10,
+      "perkDescription": "Dapat 1 \"Hint Card\" saat kuis"
+    },
+    {
+      "xpMin": 3250,
+      "badgeName": "Principal Scientist",
+      "tier": "Scientist",
+      "levelNumber": 11,
+      "perkDescription": "Dapat 1 \"Hint Card\" saat kuis"
+    },
+    {
+      "xpMin": 3850,
+      "badgeName": "Senior Scientist",
+      "tier": "Scientist",
+      "levelNumber": 12,
+      "perkDescription": "Dapat 1 \"Hint Card\" saat kuis"
+    },
+    {
+      "xpMin": 4500,
+      "badgeName": "Science Specialist",
+      "tier": "Specialist",
+      "levelNumber": 13,
+      "perkDescription": "Bebas tugas piket lab 1x / pilih tempat duduk"
+    },
+    {
+      "xpMin": 5200,
+      "badgeName": "Research Specialist",
+      "tier": "Specialist",
+      "levelNumber": 14,
+      "perkDescription": "Bebas tugas piket lab 1x / pilih tempat duduk"
+    },
+    {
+      "xpMin": 6000,
+      "badgeName": "Lead Scientist",
+      "tier": "Specialist",
+      "levelNumber": 15,
+      "perkDescription": "Bebas tugas piket lab 1x / pilih tempat duduk"
+    },
+    {
+      "xpMin": 7000,
+      "badgeName": "Chief Scientist",
+      "tier": "Specialist",
+      "levelNumber": 16,
+      "perkDescription": "Bebas tugas piket lab 1x / pilih tempat duduk"
+    },
+    {
+      "xpMin": 8200,
+      "badgeName": "Master Scientist Lvl 1",
+      "tier": "Master Scientist",
+      "levelNumber": 17,
+      "perkDescription": "Asisten Guru & Leaderboard Permanen"
+    },
+    {
+      "xpMin": 9600,
+      "badgeName": "Master Scientist Lvl 2",
+      "tier": "Master Scientist",
+      "levelNumber": 18,
+      "perkDescription": "Asisten Guru & Leaderboard Permanen"
+    },
+    {
+      "xpMin": 11200,
+      "badgeName": "Master Scientist Lvl 3",
+      "tier": "Master Scientist",
+      "levelNumber": 19,
+      "perkDescription": "Asisten Guru & Leaderboard Permanen"
+    },
+    {
+      "xpMin": 13000,
+      "badgeName": "Grand Master Scientist",
+      "tier": "Master Scientist",
+      "levelNumber": 20,
+      "perkDescription": "Asisten Guru, Gelar Kehormatan Lab & Leaderboard Hall of Fame"
+    }
+  ],
+  "xpRecords": [
+    {
+      "id": "xp-1791776901799-h6ld",
+      "tanggal": "2026-10-12",
+      "idSiswa": "SCI-001",
+      "nilaiXP": 250,
+      "keterangan": "Laporan Praktikum Sempurna",
+      "createdBy": "Guru Pembina Science",
+      "createdAt": "2026-10-12T03:48:21.799Z"
+    },
+    {
+      "id": "xp-dummy-welcome",
+      "tanggal": "2026-10-12",
+      "idSiswa": "SCI-DUMMY",
+      "nilaiXP": 750,
+      "keterangan": "Simulasi XP Awal (Pengujian Dashboard Siswa)",
+      "createdBy": "Guru Pembina Science",
+      "createdAt": "2026-10-12T03:56:43.492Z"
+    }
+  ],
+  "checkins": [],
+  "privileges": [
+    {
+      "id": "prv-dummy-welcome",
+      "studentId": "SCI-DUMMY",
+      "perkTitle": "Boleh Memilih Teman Kelompok Praktikum",
+      "tier": "Researcher",
+      "status": "available",
+      "notes": "Kupon uji coba simulasi dashboard",
+      "awardedAt": "2026-10-12T03:56:43.492Z"
+    }
+  ],
+  "activityLogs": [
+    {
+      "id": "act-1791777914319-o5il",
+      "actorId": "user-SCI-001",
+      "actorName": "Abigail J",
+      "actorRole": "student",
+      "action": "LOGIN",
+      "details": "Pengguna Abigail J (student) berhasil masuk.",
+      "timestamp": "2026-10-12T04:05:14.319Z"
+    },
+    {
+      "id": "act-1791777903413-m0rn",
+      "actorId": "user-dummy-student",
+      "actorName": "Dummy Student",
+      "actorRole": "student",
+      "action": "LOGIN",
+      "details": "Pengguna Dummy Student (student) berhasil masuk.",
+      "timestamp": "2026-10-12T04:05:03.413Z"
+    },
+    {
+      "id": "act-1791777411285-f7sq",
+      "actorId": "user-dummy-student",
+      "actorName": "Dummy Student",
+      "actorRole": "student",
+      "action": "LOGIN",
+      "details": "Pengguna Dummy Student (student) berhasil masuk.",
+      "timestamp": "2026-10-12T03:56:51.285Z"
+    },
+    {
+      "id": "act-1791777406829-pfj1",
+      "actorId": "user-dummy-student",
+      "actorName": "Dummy Student",
+      "actorRole": "student",
+      "action": "LOGIN",
+      "details": "Pengguna Dummy Student (student) berhasil masuk.",
+      "timestamp": "2026-10-12T03:56:46.829Z"
+    },
+    {
+      "id": "act-1791776957411-dhca",
+      "actorId": "user-SCI-001",
+      "actorName": "Abigail J",
+      "actorRole": "student",
+      "action": "LOGIN",
+      "details": "Pengguna Abigail J (student) berhasil masuk.",
+      "timestamp": "2026-10-12T03:49:17.411Z"
+    },
+    {
+      "id": "act-1791776906574-78lu",
+      "actorId": "user-teacher-guru",
+      "actorName": "Guru Pembina Science",
+      "actorRole": "teacher",
+      "action": "LOGIN",
+      "details": "Pengguna Guru Pembina Science (teacher) berhasil masuk.",
+      "timestamp": "2026-10-12T03:48:26.574Z"
+    },
+    {
+      "id": "act-1791776901799-azw0",
+      "actorId": "user-teacher-guru",
+      "actorName": "Guru Pembina Science",
+      "actorRole": "teacher",
+      "action": "AWARD_XP",
+      "details": "+250 XP untuk Abigail J (SCI-001): Laporan Praktikum Sempurna",
+      "timestamp": "2026-10-12T03:48:21.799Z"
+    },
+    {
+      "id": "act-1791776901782-y0ot",
+      "actorId": "user-teacher-guru",
+      "actorName": "Guru Pembina Science",
+      "actorRole": "teacher",
+      "action": "LOGIN",
+      "details": "Pengguna Guru Pembina Science (teacher) berhasil masuk.",
+      "timestamp": "2026-10-12T03:48:21.782Z"
+    },
+    {
+      "id": "act-1791776896567-aekj",
+      "actorId": "user-SCI-001",
+      "actorName": "Abigail J",
+      "actorRole": "student",
+      "action": "LOGIN",
+      "details": "Pengguna Abigail J (student) berhasil masuk.",
+      "timestamp": "2026-10-12T03:48:16.567Z"
+    },
+    {
+      "id": "act-1791776892167-6262",
+      "actorId": "user-teacher-guru",
+      "actorName": "Guru Pembina Science",
+      "actorRole": "teacher",
+      "action": "LOGIN",
+      "details": "Pengguna Guru Pembina Science (teacher) berhasil masuk.",
+      "timestamp": "2026-10-12T03:48:12.167Z"
+    },
+    {
+      "id": "act-1791776886430-6ant",
+      "actorId": "user-SCI-001",
+      "actorName": "Abigail J",
+      "actorRole": "student",
+      "action": "LOGIN",
+      "details": "Pengguna Abigail J (student) berhasil masuk.",
+      "timestamp": "2026-10-12T03:48:06.430Z"
+    },
+    {
+      "id": "act-1791776877180-kxj7",
+      "actorId": "user-teacher-guru",
+      "actorName": "Guru Pembina Science",
+      "actorRole": "teacher",
+      "action": "LOGIN",
+      "details": "Pengguna Guru Pembina Science (teacher) berhasil masuk.",
+      "timestamp": "2026-10-12T03:47:57.180Z"
+    },
+    {
+      "id": "act-1791776872451",
+      "actorId": "system",
+      "actorName": "System",
+      "actorRole": "teacher",
+      "action": "INITIALIZE_SYSTEM",
+      "details": "Sistem SainsQuest diinisialisasi dengan akun Guru dan 42 akun siswa.",
+      "timestamp": "2026-10-12T03:47:52.312Z"
+    }
+  ],
+  "rewardPresets": [
+    {
+      "id": "rew-1",
+      "label": "Bertanya Kritis / Hipotesis",
+      "xp": 50,
+      "note": "Bertanya kritis dan merumuskan hipotesis ilmiah",
+      "type": "reward"
+    },
+    {
+      "id": "rew-2",
+      "label": "Praktikum Tertib & Aman",
+      "xp": 100,
+      "note": "Pelaksanaan praktikum sangat tertib & mematuhi SOP",
+      "type": "reward"
+    },
+    {
+      "id": "rew-3",
+      "label": "Laporan Praktikum Sempurna",
+      "xp": 250,
+      "note": "Laporan praktikum komprehensif dan analisis data mendalam",
+      "type": "reward"
+    },
+    {
+      "id": "rew-4",
+      "label": "Presentasi Hasil Riset",
+      "xp": 350,
+      "note": "Presentasi ilmiah sangat lugas dan data teruji",
+      "type": "reward"
+    },
+    {
+      "id": "rew-5",
+      "label": "Proyek Sains Inovatif",
+      "xp": 500,
+      "note": "Karya inovasi sains/rekayasa teknologi terpilih",
+      "type": "reward"
+    }
+  ],
+  "penaltyPresets": [
+    {
+      "id": "pen-1",
+      "label": "Terlambat Kumpul Tugas",
+      "xp": 20,
+      "note": "Terlambat mengumpulkan tugas atau lembar kerja lab",
+      "type": "penalty"
+    },
+    {
+      "id": "pen-2",
+      "label": "Tidak Pakai Jas Lab / APD",
+      "xp": 50,
+      "note": "Pelanggaran SOP: Tidak mengenakan jas lab / kacamata",
+      "type": "penalty"
+    },
+    {
+      "id": "pen-3",
+      "label": "Meja Praktikum Berantakan",
+      "xp": 75,
+      "note": "Alat dan preparat lab tidak dibersihkan setelah selesai",
+      "type": "penalty"
+    },
+    {
+      "id": "pen-4",
+      "label": "Merusak Alat Kaca / Tabung",
+      "xp": 100,
+      "note": "Kelalaian penanganan peralatan kaca laboratorium",
+      "type": "penalty"
+    }
+  ],
+  "quests": [
+    {
+      "id": "quest-w1",
+      "weekNumber": 1,
+      "title": "Laboratorium Hijau: Ekstraksi Klorofil Daun",
+      "category": "Biologi",
+      "xpReward": 800,
+      "description": "Lakukan pemisahan pigmen klorofil menggunakan alkohol panas dan saring menggunakan kertas kromatografi sederhana. Ambil foto hasil kromatogram.",
+      "completedStudentIds": []
+    },
+    {
+      "id": "quest-w2",
+      "weekNumber": 2,
+      "title": "Detektif pH: Indikator Asam Basa Alami",
+      "category": "Kimia",
+      "xpReward": 1000,
+      "description": "Buat ekstrak kunyit atau kol ungu sebagai indikator alami untuk menguji 5 bahan dapur (cuka, sabun, soda kue, jeruk nipis, air garam). Catat spektrum perubahan warna.",
+      "completedStudentIds": []
+    },
+    {
+      "id": "quest-w3",
+      "weekNumber": 3,
+      "title": "Eksplorasi Mikro-Kosmos: Preparat Sel Gabus & Sel Bawang",
+      "category": "Biologi",
+      "xpReward": 1200,
+      "description": "Buat sayatan membujur tipis sel epidermis Allium cepa, amati di bawah mikroskop perbesaran 400x, dan identifikasi sitoplasma, nukleus, serta dinding sel.",
+      "completedStudentIds": []
+    },
+    {
+      "id": "quest-w4",
+      "weekNumber": 4,
+      "title": "Energi Terbarukan: Rancang Mini Turbin Air Pelton",
+      "category": "Fisika",
+      "xpReward": 1500,
+      "description": "Rancang sudu turbin dari sendok plastik dan dynamo motor DC mini. Ukur tegangan output (volt) yang dihasilkan saat dialiri kran air laboratorium.",
+      "completedStudentIds": []
+    }
+  ],
+  "todayQuestion": {
+    "id": "q-today",
+    "tanggal": "2026-10-12",
+    "pertanyaan": "Apa fungsi kloroplas pada sel tumbuhan?",
+    "pilihan": [
+      "Tempat respirasi seluler",
+      "Tempat berlangsungnya fotosintesis",
+      "Sintesis protein murni",
+      "Pengatur tekanan osmotik"
+    ],
+    "kunciJawaban": "Tempat berlangsungnya fotosintesis",
+    "kategori": "Biologi Sel",
+    "penjelasan": "Kloroplas mengandung pigmen klorofil yang menyerap foton cahaya matahari untuk mengubah CO2 dan H2O menjadi glukosa dan oksigen.",
+    "xpBonus": 50
+  }
+}

@@ -63,3 +63,6 @@ export function triggerPenaltySound() {
     // Ignore
   }
 }
+
+export const triggerStreakCelebration = triggerStreakConfetti;
+export const triggerCorrectAnswerSound = triggerTeacherRewardSound;

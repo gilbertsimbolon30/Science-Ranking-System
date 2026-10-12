@@ -1,5 +1,16 @@
 export type TierType = 'Trainee' | 'Researcher' | 'Scientist' | 'Specialist' | 'Master Scientist';
 
+export type UserRole = 'teacher' | 'student';
+
+export interface AuthUser {
+  id: string;
+  username: string;
+  name: string;
+  role: UserRole;
+  studentId?: string;
+  mustChangePassword: boolean;
+}
+
 export interface MasterLevel {
   xpMin: number;
   badgeName: string;
@@ -11,16 +22,22 @@ export interface MasterLevel {
 export interface Student {
   id: string; // e.g. "SCI-001"
   name: string;
+  username?: string;
   avatarSeed?: string;
-  activePerksUsed?: Record<string, number>; // perk ID to count used
+  isActive?: boolean;
+  mustChangePassword?: boolean;
+  lastLogin?: string | null;
+  activePerksUsed?: Record<string, number>;
 }
 
 export interface XPRecord {
   id: string;
   tanggal: string; // YYYY-MM-DD
   idSiswa: string;
-  nilaiXP: number; // positive or negative
+  nilaiXP: number; // positive or negative (-1000 to +1000)
   keterangan: string;
+  createdBy?: string;
+  createdAt?: string;
 }
 
 export interface DailyCheckinRecord {
@@ -30,6 +47,29 @@ export interface DailyCheckinRecord {
   pertanyaan: string;
   jawaban: string;
   streakHarian: number; // Formula calculated
+  createdAt?: string;
+}
+
+export interface PrivilegeRecord {
+  id: string;
+  studentId: string;
+  perkTitle: string;
+  tier: string;
+  status: 'available' | 'used' | 'revoked';
+  notes?: string;
+  awardedAt: string;
+  usedAt?: string;
+  revokedAt?: string;
+}
+
+export interface ActivityLog {
+  id: string;
+  actorId: string;
+  actorName: string;
+  actorRole: 'teacher' | 'student';
+  action: string;
+  details: string;
+  timestamp: string;
 }
 
 export interface WeeklyQuest {

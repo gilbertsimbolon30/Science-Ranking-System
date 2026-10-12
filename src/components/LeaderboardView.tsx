@@ -7,7 +7,6 @@ interface LeaderboardViewProps {
   stats: StudentComputedStats[];
   onSelectStudent: (studentId: string) => void;
   onOpenQuickXP: (studentId: string) => void;
-  onGoToCheckin: () => void;
   onGoToTeacherPanel?: () => void;
 }
 
@@ -15,7 +14,6 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
   stats,
   onSelectStudent,
   onOpenQuickXP,
-  onGoToCheckin,
   onGoToTeacherPanel,
 }) => {
   const [selectedTier, setSelectedTier] = useState<string>('all');
@@ -35,8 +33,8 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
   const topThree = stats.slice(0, 3);
   const totalStudents = stats.length;
   const avgXP = totalStudents > 0 ? Math.round(stats.reduce((acc, s) => acc + s.totalXP, 0) / totalStudents) : 0;
-  const maxStreak = stats.length > 0 ? Math.max(...stats.map((s) => s.currentStreak)) : 0;
-  const activeStreakCount = stats.filter((s) => s.currentStreak > 0).length;
+  const topScore = stats.length > 0 ? Math.max(...stats.map((s) => s.totalXP)) : 0;
+  const rank1Name = stats[0]?.name || '-';
 
   return (
     <div className="space-y-6">
@@ -76,12 +74,12 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
               <span className="text-lg font-bold text-emerald-400 font-mono">{avgXP.toLocaleString()} XP</span>
             </div>
             <div className="bg-slate-900/80 backdrop-blur border border-slate-800 px-3.5 py-2 rounded-lg">
-              <span className="text-slate-400 block">Streak Tertinggi Aktif</span>
-              <span className="text-lg font-bold text-amber-400 font-mono">{maxStreak} Hari</span>
+              <span className="text-slate-400 block">XP Tertinggi</span>
+              <span className="text-lg font-bold text-amber-400 font-mono">{topScore.toLocaleString()} XP</span>
             </div>
             <div className="bg-slate-900/80 backdrop-blur border border-slate-800 px-3.5 py-2 rounded-lg">
-              <span className="text-slate-400 block">Siswa Streak Aktif</span>
-              <span className="text-lg font-bold text-cyan-400 font-mono">{activeStreakCount} Siswa</span>
+              <span className="text-slate-400 block">Peringkat 1 Saat Ini</span>
+              <span className="text-lg font-bold text-cyan-400 truncate max-w-[140px] block">{rank1Name}</span>
             </div>
           </div>
         </div>
@@ -262,16 +260,18 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
               Peringkat Kelas Sains ({filteredStats.length} Siswa)
             </h2>
             <p className="text-xs text-slate-400 mt-0.5">
-              Diperbarui otomatis berdasarkan rumus SUMIFS('Riwayat XP') & VLOOKUP('Master Level')
+              Diperbarui otomatis berdasarkan akumulasi poin XP & tingkatan badge
             </p>
           </div>
-          <button
-            onClick={onGoToCheckin}
-            className="text-xs text-emerald-400 hover:text-emerald-300 font-medium flex items-center gap-1 cursor-pointer"
-          >
-            <span>Buka Portal Check-in</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </button>
+          {onGoToTeacherPanel && (
+            <button
+              onClick={onGoToTeacherPanel}
+              className="text-xs text-emerald-400 hover:text-emerald-300 font-medium flex items-center gap-1 cursor-pointer"
+            >
+              <span>Panel Guru</span>
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+          )}
         </div>
 
         <div className="overflow-x-auto">

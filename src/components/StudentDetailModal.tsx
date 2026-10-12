@@ -17,7 +17,6 @@ import { getTierStyle } from '../utils/gamificationEngine';
 interface StudentDetailModalProps {
   studentStat: StudentComputedStats | null;
   xpRecords: XPRecord[];
-  checkins: DailyCheckinRecord[];
   onClose: () => void;
   onOpenQuickXP: (studentId: string) => void;
 }
@@ -25,7 +24,6 @@ interface StudentDetailModalProps {
 export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
   studentStat,
   xpRecords,
-  checkins,
   onClose,
   onOpenQuickXP,
 }) => {
@@ -36,15 +34,11 @@ export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
     .filter((r) => r.idSiswa === studentStat.id)
     .sort((a, b) => b.tanggal.localeCompare(a.tanggal));
 
-  const studentCheckins = checkins
-    .filter((c) => c.idSiswa === studentStat.id)
-    .sort((a, b) => b.tanggal.localeCompare(a.tanggal));
-
   return (
     <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
       <div className="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[92vh] flex flex-col shadow-2xl animate-fade-in overflow-hidden">
         {/* Header */}
-        <div className="p-6 border-b border-slate-800 bg-gradient-to-r from-slate-950 to-slate-900 flex items-start justify-between">
+        <div className="p-6 border-b border-slate-800 bg-gradient-to-r from-slate-950 to-slate-900 flex items-start justify-between gap-4">
           <div className="flex items-center gap-4">
             <div className="w-14 h-14 rounded-2xl bg-slate-800 border-2 border-slate-700 flex items-center justify-center text-xl font-bold text-emerald-400 shadow-inner">
               {studentStat.name.charAt(0)}
@@ -73,9 +67,11 @@ export const StudentDetailModal: React.FC<StudentDetailModalProps> = ({
 
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white p-1.5 rounded-lg hover:bg-slate-800 transition-colors cursor-pointer"
+            className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-bold transition-colors cursor-pointer flex items-center gap-1.5 shrink-0"
+            title="Tutup & Kembali"
           >
-            ✕
+            <span>✕</span>
+            <span>Tutup / Kembali</span>
           </button>
         </div>
 

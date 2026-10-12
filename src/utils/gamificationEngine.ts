@@ -207,6 +207,7 @@ export function getTierStyle(tier: TierType): {
   badgeBg: string;
   badgeText: string;
   textColor: string;
+  badge: string;
 } {
   switch (tier) {
     case 'Trainee':
@@ -217,6 +218,7 @@ export function getTierStyle(tier: TierType): {
         badgeBg: 'bg-slate-800',
         badgeText: 'text-slate-300',
         textColor: 'text-slate-300',
+        badge: 'bg-slate-800 text-slate-300 border border-slate-700',
       };
     case 'Researcher':
       return {
@@ -226,6 +228,7 @@ export function getTierStyle(tier: TierType): {
         badgeBg: 'bg-cyan-900/60',
         badgeText: 'text-cyan-300',
         textColor: 'text-cyan-400',
+        badge: 'bg-cyan-950 text-cyan-300 border border-cyan-800/60',
       };
     case 'Scientist':
       return {
@@ -235,6 +238,7 @@ export function getTierStyle(tier: TierType): {
         badgeBg: 'bg-emerald-900/60',
         badgeText: 'text-emerald-300',
         textColor: 'text-emerald-400',
+        badge: 'bg-emerald-950 text-emerald-300 border border-emerald-800/60',
       };
     case 'Specialist':
       return {
@@ -244,6 +248,7 @@ export function getTierStyle(tier: TierType): {
         badgeBg: 'bg-purple-900/60',
         badgeText: 'text-purple-300',
         textColor: 'text-purple-400',
+        badge: 'bg-purple-950 text-purple-300 border border-purple-800/60',
       };
     case 'Master Scientist':
       return {
@@ -253,6 +258,7 @@ export function getTierStyle(tier: TierType): {
         badgeBg: 'bg-amber-900/60',
         badgeText: 'text-amber-300',
         textColor: 'text-amber-400',
+        badge: 'bg-amber-950 text-amber-300 border border-amber-700/60',
       };
   }
 }
